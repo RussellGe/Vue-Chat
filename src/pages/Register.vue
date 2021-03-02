@@ -1,15 +1,13 @@
 <template>
     <div class="homewrapper">
-        <div class="showAd">
-            <img src="../assets/images/building.jpg" alt="">
-        </div>
         <div class="login">
-            <span class="title">Chat Room</span>
+            <span class="title">Register</span>
             <input class="name" type="text" placeholder="account"/>
             <input class="password" type="password" placeholder="password">
+            <input class="password" type="password" placeholder="password again">
             <div class="btnwrapper">
-                <router-link to="message" class="button">Login</router-link>
-                <router-link to="register" class="button">Register</router-link>
+                <router-link to="/" class="button">Back</router-link>
+                <div class="button">Done</div>
             </div>
         </div>
     </div>
@@ -26,16 +24,6 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.showAd {
-    height: 600px;
-    width: 400px;
-    overflow: hidden;
-    border-radius: 20px;
-    margin-right: 60px;
-}
-.showAd img {
-    height: 600px;
 }
 .login {
     display: flex;

@@ -13,15 +13,12 @@ export default {
 .search{
     background: rgb(151, 144, 144);
     height: 50px;
-    width: 60%;
-    margin-left: 20%;
+    width: 100%;
     margin-top: 1vh;
-    border-radius: 5px;
     display: flex;
     align-items: center;
     box-sizing: border-box;
     padding: 10px;
-
 }
 .searchBar{
     display: inline;
