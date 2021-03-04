@@ -5,18 +5,44 @@
         </div>
         <div class="login">
             <span class="title">Chat Room</span>
-            <input class="name" type="text" placeholder="account"/>
-            <input class="password" type="password" placeholder="password">
+            <input class="name" type="text" v-model='account' placeholder="account"/>
+            <input class="password" type="password" v-model='password' placeholder="password">
             <div class="btnwrapper">
-                <router-link to="message" class="button">Login</router-link>
+                <div @click="handleLogin" class="button">Login</div>
                 <router-link to="register" class="button">Register</router-link>
             </div>
+            <p>{{err}}</p>
         </div>
     </div>
 </template>
 <script>
+import UserService from '../UserService'
 export default {
     name: 'Home',
+    data() {
+        return {
+            account:'',
+            password: '',
+            err: '',
+            user: null,
+        }
+    },
+    methods: {
+        async handleLogin() {
+            console.log(this.account,this.password)
+            try {
+                this.user = await UserService.userLogin(this.account, this.password)
+                
+            if(!this.user.account) {
+                this.err = 'Account is not right'
+            }
+            console.log(this.user)
+            this.$router.push({name:'/message',params:this.user})
+        } catch(err) {
+            this.error = err.message
+            }
+        }
+    }
 }
 </script>
 <style scoped>

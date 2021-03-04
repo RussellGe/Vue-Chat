@@ -2,19 +2,48 @@
     <div class="homewrapper">
         <div class="login">
             <span class="title">Register</span>
-            <input class="name" type="text" placeholder="account"/>
-            <input class="password" type="password" placeholder="password">
-            <input class="password" type="password" placeholder="password again">
+            <input class="name" type="text" v-model="account" placeholder="account"/>
+            <input class="password" type="password" v-model="password" placeholder="password">
+            <input class="password" type="password" v-model="passwordConfirm" placeholder="password again">
             <div class="btnwrapper">
                 <router-link to="/" class="button">Back</router-link>
-                <div class="button">Done</div>
+                <div class="button" @click="handleSubmit">Done</div>
             </div>
+            <p>{{err}}</p>
         </div>
     </div>
 </template>
 <script>
+import UserService from '../UserService'
+
 export default {
     name: 'Home',
+    data() {
+        return {
+            account: '',
+            password: '',
+            passwordConfirm: '',
+            err: ''
+        }
+    },
+    methods: {
+        handleSubmit() {
+            if(!(this.account&&this.password&&this.passwordConfirm)) {
+                this.err = 'You should fill in all the information first'
+                return
+            }
+            if(this.password != this.passwordConfirm) {
+                this.err = 'You entered different Passwords'
+                return
+            }
+            try {
+              UserService.createUser(this.account, this.password)
+              this.err = 'success'
+            } catch(err) {
+            this.error = err.message
+        }
+        }
+    }
 }
 </script>
 <style scoped>

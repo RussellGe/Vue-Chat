@@ -24,6 +24,9 @@ export default {
         Friend,
         Chat,
         Self
+    },
+    created() {
+        console.log(this.$router.params)
     }
 }
 </script>
