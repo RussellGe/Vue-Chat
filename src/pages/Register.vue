@@ -27,7 +27,8 @@ export default {
         }
     },
     methods: {
-        handleSubmit() {
+        async handleSubmit() {
+            
             if(!(this.account&&this.password&&this.passwordConfirm)) {
                 this.err = 'You should fill in all the information first'
                 return
@@ -36,13 +37,18 @@ export default {
                 this.err = 'You entered different Passwords'
                 return
             }
+            const user = await UserService.userCheck(this.account)
+            if(!user.account){
             try {
               UserService.createUser(this.account, this.password)
               this.err = 'success'
             } catch(err) {
             this.error = err.message
-        }
-        }
+            }
+            }else {
+                this.err = 'This account already exists'
+            }
+        },
     }
 }
 </script>

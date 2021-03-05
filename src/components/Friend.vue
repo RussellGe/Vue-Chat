@@ -2,6 +2,7 @@
     <div class="friend">
         <Search class="search" />
         <Card />
+        <Card />
     </div>
 </template>
 <script>

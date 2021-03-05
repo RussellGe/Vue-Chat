@@ -8,6 +8,12 @@ router.get('/', async (req, res)=>{
     const users = await loadUserCollection();
     res.send(await users.find({}).toArray())
 });
+router.post('/check', async (req, res)=>{
+    const users = await loadUserCollection();
+    res.send(await users.findOne({
+        account:req.body.account
+    })
+    )})
 
 router.post('/login', async (req, res)=>{
     const users = await loadUserCollection();
@@ -36,4 +42,6 @@ async function loadUserCollection() {
     });
     return client.db('RussBlog').collection('User');
 }
+
+
 module.exports = router

@@ -44,6 +44,20 @@ class UserService {
             
         });
     }
+
+    static userCheck(account) {
+        return new Promise ((resolve,reject) => {
+            axios.post(url+'check',{account}).then((res) => {
+                const data = res.data;
+                resolve(data)
+                console.log(data.account)
+            })
+            .catch((err)=> {
+                reject(err);
+            })
+            
+        });
+    }
 }
 
 export default UserService

@@ -37,7 +37,7 @@ export default {
                 this.err = 'Account is not right'
             }
             console.log(this.user)
-            this.$router.push({name:'/message',params:this.user})
+            this.$router.push({path:'message',query:{user:this.user.account}})
         } catch(err) {
             this.error = err.message
             }
@@ -109,6 +109,12 @@ input {
 }
 .button:hover {
    background: rgb(97, 93, 93); 
+}
+@media screen and (max-width: 900px){
+    .showAd{
+        display: none;
+    }
+    
 }
 
 </style>
